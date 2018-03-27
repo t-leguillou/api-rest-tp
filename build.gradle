@@ -1,0 +1,53 @@
+buildscript {
+    repositories {
+        mavenCentral()
+    }
+    dependencies {
+        classpath("org.springframework.boot:spring-boot-gradle-plugin:1.5.7.RELEASE")
+    }
+}
+
+apply plugin: 'java'
+apply plugin: 'idea'
+apply plugin: 'org.springframework.boot'
+
+
+jar {
+    baseName = 'octo.com.au-API-REST-TP'
+    version =  '0.1.0'
+}
+
+repositories {
+    mavenCentral()
+    maven {
+      url "https://plugins.gradle.org/m2/"
+    }
+}
+
+sourceCompatibility = 1.8
+targetCompatibility = 1.8
+
+dependencies {
+
+
+
+    compile("org.springframework.boot:spring-boot-devtools:1.5.7.RELEASE")
+    compile("org.springframework.boot:spring-boot-starter-web:1.5.7.RELEASE")
+    compile("org.springframework.boot:spring-boot-starter-security:1.5.7.RELEASE")
+    compile('org.springframework.boot:spring-boot-starter-test')
+    compile("org.springframework.security:spring-security-jwt")
+    compile('org.springframework.boot:spring-boot-starter-data-jpa')
+    compile group: 'io.jsonwebtoken', name: 'jjwt', version: '0.7.0'
+
+    testCompile ("org.springframework.boot:spring-boot-starter-test")
+
+    testCompile("junit:junit")
+}
+
+bootRun {
+    args = ["--spring.profiles.active=default"]
+}
+
+task getHomeDir << {
+    println gradle.gradleHomeDir
+}
